@@ -64,6 +64,9 @@ def get_info(request):
                 ref=ref or 'master', file_path=file_path))
 
     response = request.response
+    headers = r.headers.copy()
+    del headers['Content-Length']
+    response.headers = headers
 
     response.content_type = 'text/plain'
     path = file_path.lower()
