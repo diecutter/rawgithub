@@ -9,7 +9,7 @@ with open(os.path.join(here, 'README.rst')) as f:
 
 
 setup(name='rawgithub',
-      version='0.1',
+      version='0.2.dev0',
       description='rawgithub',
       long_description=README,
       classifiers=[
