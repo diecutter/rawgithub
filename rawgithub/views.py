@@ -35,7 +35,7 @@ def get_info(request):
     file_path = request.matchdict['file']
 
     url = 'https://api.github.com/repos/{owner}/{repo}/' \
-          'contents/{file_path}'.format(
+          'contents/{file_path}?'.format(
               owner=owner,
               repo=repo,
               file_path=file_path)
@@ -55,7 +55,9 @@ def get_info(request):
                      headers={'Accept': 'application/vnd.github.V3.raw'})
     try:
         r.raise_for_status()
-    except requests.HTTPError:
+    except requests.HTTPError as e:
+        logger.debug('URL: %s' % url)
+        logger.debug(str(e))
         return HTTPFound(
             'https://github.com/{owner}/{repo}/raw/{ref}/{file_path}'.format(
                 owner=owner, repo=repo,
