@@ -58,6 +58,7 @@ def get_info(request):
     except requests.HTTPError as e:
         logger.debug('URL: %s' % url)
         logger.debug(str(e))
+        logger.debug(r.headers)
         return HTTPFound(
             'https://github.com/{owner}/{repo}/raw/{ref}/{file_path}'.format(
                 owner=owner, repo=repo,
