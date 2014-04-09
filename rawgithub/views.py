@@ -66,6 +66,7 @@ def get_info(request):
     response = request.response
     headers = r.headers.copy()
     del headers['Content-Length']
+    del headers['Content-Security-Policy']
     response.headers = headers
 
     response.content_type = 'text/plain'
